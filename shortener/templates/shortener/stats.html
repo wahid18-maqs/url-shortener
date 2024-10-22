@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Stats</title>
+    <link rel="stylesheet" href="{% static 'shortener/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>URL Stats for {{ url.short_url }}</h1>
+        <p>Original URL: <a href="{{ url.long_url }}">{{ url.long_url }}</a></p>
+        <p>Hits: {{ url.hits }}</p>
+    </div>
+</body>
+</html>
