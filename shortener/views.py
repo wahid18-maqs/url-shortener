@@ -1,19 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import URL
-import random
-import string
+from urllib.parse import urlparse
 
-def generate_short_url(length=6):
-    """Helper function to generate a random short URL."""
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+def extract_domain(long_url):
+    """Extracts the domain from the long URL."""
+    parsed_url = urlparse(long_url)
+    return parsed_url.netloc.replace('www.', '')  # Remove 'www.' if present
 
 def home(request):
     short_url = None
 
     if request.method == 'POST':
         long_url = request.POST['long_url']
-        short_url = generate_short_url()
-        
+        domain = extract_domain(long_url)
+        short_url = domain  # Use the domain as the short URL
+
+        # Check if the short URL already exists
+        if URL.objects.filter(short_url=short_url).exists():
+            short_url += '-' + str(URL.objects.filter(short_url__startswith=domain).count() + 1)  # Add a unique suffix
+
         # Save the long URL and short URL to the database
         url = URL(long_url=long_url, short_url=short_url)
         url.save()
