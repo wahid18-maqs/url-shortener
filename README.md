@@ -3,9 +3,8 @@
 
 This is a simple URL shortening service built with Django. It allows users to create short URLs from long ones and provides functionality to redirect the user from a short URL to the original long URL. Additionally, the service tracks the number of times each short URL has been visited.
 
-##Screenshot
+## Screenshot
 ![url](https://github.com/user-attachments/assets/11240624-9ac5-4a2a-86c7-0e5f0d1578f0)
-
 
 ## Features
 
@@ -25,34 +24,34 @@ This is a simple URL shortening service built with Django. It allows users to cr
 Follow these steps to set up the project locally:
 
 ### 1. Clone the repository
-\`\`\`bash
+```bash
 git clone <repo>
 cd url_shortener
-\`\`\`
+```
 
 ### 2. Create and activate a virtual environment
-You can use \`venv\` to create a virtual environment for the project:
-\`\`\`bash
+You can use `venv` to create a virtual environment for the project:
+```bash
 python -m venv env
- env\Scripts\activate\`
-\`\`\`
+env\Scripts\activate  # On Windows
+```
 
 ### 3. Install required dependencies
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### 4. Apply migrations
-\`\`\`bash
+```bash
 python manage.py migrate
-\`\`\`
+```
 
 ### 5. Run the development server
-\`\`\`bash
+```bash
 python manage.py runserver
-\`\`\`
+```
 
-Visit \`http://127.0.0.1:8000\` in your browser to access the URL Shortener.
+Visit `http://127.0.0.1:8000` in your browser to access the URL Shortener.
 
 ## Usage
 
@@ -64,7 +63,7 @@ Visit \`http://127.0.0.1:8000\` in your browser to access the URL Shortener.
 
 ## Project Structure
 
-\`\`\`
+```
 url_shortener/
 │
 ├── shortener/
@@ -78,4 +77,6 @@ url_shortener/
 ├── manage.py               # Django project management
 ├── db.sqlite3              # SQLite database (created after migration)
 └── requirements.txt        # Python dependencies
-\`\`\`
+```
+
+
