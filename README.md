@@ -25,7 +25,7 @@ Follow these steps to set up the project locally:
 
 ### 1. Clone the repository
 ```bash
-git clone <repo>
+git clone <https://github.com/wahid18-maqs/url-shortener.git>
 cd url_shortener
 ```
 
