@@ -6,6 +6,20 @@
     <title>URL Shortener</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'shortener/style.css' %}">
+    <!-- Clipboard function to copy only the shortened part -->
+    <script>
+        function copyToClipboard(){
+            var copyText = document.getElementById("short-url");
+            var shortUrl = copyText.getAttribute('data-short-url');
+            var tempInput = document.createElement('input');
+            tempInput.setAttribute('value', shortUrl);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Copied the short URL: " + shortUrl);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -13,11 +27,16 @@
         <form method="POST">
             {% csrf_token %}
             <label for="long_url">Enter your long URL:</label>
-            <input type="url" name="long_url" id="long_url" required>
-            <button type="submit">Short</button>
+            <input type="url" name="long_url" id="long_url" placeholder="Enter a long URL" required>
+            <button type="submit">Shorten</button>
         </form>
+
         {% if short_url %}
-        <p>Your short URL: <a href="{{ short_url }}">{{ short_url }}</a></p>
+        <div class="result">
+            <p>Your shortened URL is:</p>
+            <a href="{{ request.build_absolute_uri }}{{ short_url }}" target="_blank" id="short-url" data-short-url="{{ short_url }}">{{ short_url }}</a>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy Short URL to Clipboard</button>
+        </div>
         {% endif %}
     </div>
 </body>
